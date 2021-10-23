@@ -102,6 +102,9 @@ public class FlyCamera : MonoBehaviour
     public float sphereRadius;
     public float maxDistance;
     public LayerMask layerMask;
+    bool UIactive;
+    public GameObject canvas;
+
 
     private void Start()
     {
@@ -117,6 +120,12 @@ public class FlyCamera : MonoBehaviour
 
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.M))
+        {
+            UIactive = !UIactive;
+            canvas.SetActive(UIactive);
+        }
+
         if (!_active)
             return;
 
@@ -273,5 +282,11 @@ public class FlyCamera : MonoBehaviour
             transform.rotation = Quaternion.Euler(v.x, v.y, 0);
         }
         
+    }
+
+    public void ChangeLayerMask(string LayerMasked)
+    {
+
+        layerMask.value = 1 << LayerMask.NameToLayer(LayerMasked);
     }
 }

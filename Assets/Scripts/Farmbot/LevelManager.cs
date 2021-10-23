@@ -10,10 +10,10 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject _loaderCanvas;
     [SerializeField] private Slider _ProgressBar;
     private float target;
-
+    public int targetFrames = 30;
     private void Awake()
     {
-        Application.targetFrameRate = 60;
+        Application.targetFrameRate = targetFrames;
         if (Instanace == null)
         {
             Instanace = this;
@@ -23,6 +23,12 @@ public class LevelManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void ChangeFrameRate(int Frames)
+    {
+        targetFrames = Frames;
+        Application.targetFrameRate = targetFrames;
     }
 
     public async void LoadScene(string sceneName)
